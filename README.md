@@ -8,6 +8,7 @@
     git clone https://github.com/ros-teleop/teleop_twist_keyboard.git
     ```
 ## Steps
+### Follower
 1. [REMOTE] 
     ```
     roscore
@@ -32,16 +33,11 @@
     ```
     rosrun find_object_2d find_object_2d image:=raspicam_node/image
     ```
-6. Pick an object to recognise and save it. To test it try
+6. Pick an image(/image_rec/9.png)to recognise and save it. To test it try
     ```
     rostopic echo /objects
     ```
-7. Edit the id of object in _action_controller.cpp_ , example the object id is 1
-    ```
-    #define ARROW_UP 1
-    int id = 1
-    ```
-    and compile the code using
+7. Compile .cpp file
     ```
     cd ~/catkin_ws/
     catkin_make
@@ -53,3 +49,15 @@
     roslaunch tutorial_pkg tutorial_pkg.launch
     ```
 9. The turtlebot should move foward once it sees the object.
+### Navigation
+1.  [REMOTE]
+    Run RViz
+    ```
+    roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/maps/map2.yaml
+    ```
+2.  [REMOTE]
+    Run goal.py
+    ```
+    rosrun tutorial_pkg goal.py
+    ```
+
