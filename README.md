@@ -73,7 +73,7 @@
 
 8. [REMOTE] 
     ```
-    roslaunch tutorial_pkg tutorial_pkg.launch
+    roslaunch tutorial_pkg follower.launch
     ```
 9. The turtlebot should move foward once it sees the object.
 ### Navigation
