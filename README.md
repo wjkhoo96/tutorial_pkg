@@ -1,4 +1,4 @@
-# To Run
+# Run
 1. [REMOTE] 
     ```
     roscore
@@ -18,6 +18,8 @@
     catkin_make
     ```
 5. [REMOTE]
+    
+    Run both navigation and follower functions.
     ```
     roslaunch tutorial_pkg follower_navigation.launch
     ```
@@ -85,4 +87,3 @@
     ```
     rosrun tutorial_pkg goal.py
     ```
-
