@@ -3,12 +3,12 @@
 #include <geometry_msgs/Twist.h>
 #include <opencv2/opencv.hpp>
 
-#define SMILE 4
-#define ARROW_LEFT 10
-#define ARROW_UP 13
-#define ARROW_DOWN 1
+#define SMILE 9
+#define ARROW_LEFT 3
+#define ARROW_UP 4
+#define ARROW_DOWN 6
 
-int id = 13;
+int id = 9;
 ros::Publisher action_pub;
 geometry_msgs::Twist set_vel;
 
@@ -39,7 +39,7 @@ void objectCallback(const std_msgs::Float32MultiArrayPtr &object)
          set_vel.angular.z = 1;
          break;
       case ARROW_UP:
-         set_vel.linear.x = 0.05;
+         set_vel.linear.x = 1;
          set_vel.angular.z = 0;
          break;
       case ARROW_DOWN:
@@ -71,24 +71,28 @@ void objectCallback(const std_msgs::Float32MultiArrayPtr &object)
          if (ang_vel >= -(min_ang_vel / 2) && ang_vel <= (min_ang_vel / 2))
          {
             set_vel.angular.z = 0;
-	    set_vel.linear.x = 1;
+	set_vel.linear.x = 0.1;
          }
          else if (ang_vel >= max_ang_vel)
          {
             set_vel.angular.z = max_ang_vel;
-	    set_vel.linear.x = 1;
+set_vel.linear.x = 0.1;
          }
          else if (ang_vel <= -max_ang_vel)
          {
             set_vel.angular.z = -max_ang_vel;
-	    set_vel.linear.x = 1;
+set_vel.linear.x = 0.1;
          }
          else
          {
             set_vel.angular.z = ang_vel;
-	    set_vel.linear.x = 1;
+set_vel.linear.x = 0.1;
          }
+
+	 
+
          break;
+
       default: // other object
          set_vel.linear.x = 0;
          set_vel.angular.z = 0;
@@ -106,7 +110,7 @@ void objectCallback(const std_msgs::Float32MultiArrayPtr &object)
 
 int main(int argc, char **argv)
 {
-
+   
    ros::init(argc, argv, "action_controller");
    ros::NodeHandle n("~");
    ros::Rate loop_rate(50);
