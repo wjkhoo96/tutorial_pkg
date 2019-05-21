@@ -1,3 +1,28 @@
+#To Run
+1. [REMOTE] 
+    ```
+    roscore
+    ```
+2. [TURTLEBOT3] 
+    ```
+    roslaunch turtlebot3_bringup turtlebot3_robot.launch
+    ```
+3. [TURTLEBOT3] 
+    ```
+    roslaunch turtlebot3_bringup turtlebot3_rpicamera.launch
+    ```
+4. [REMOTE]
+    Compile .cpp by building with catkin_make
+    ```
+    cd ~/catkin_ws/
+    catkin_make
+    ```
+5. [REMOTE]
+    ```
+    roslaunch tutorial_pkg follower_navigation.launch
+    ```
+
+#Guide
 ## Setup
 1. Follow steps
     ```
@@ -37,7 +62,7 @@
     ```
     rostopic echo /objects
     ```
-7. Compile .cpp file
+7. Compile .cpp by building with catkin_make
     ```
     cd ~/catkin_ws/
     catkin_make

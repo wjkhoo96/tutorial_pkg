@@ -8,6 +8,12 @@
         <arg name="model" value="$(arg model)" />
     </include>
 
+    <!-- Object Recognition -->
+    <node name="find_object_2d" pkg="find_object_2d" type="find_object_2d" output="screen">
+		<remap from="image" to="raspicam_node/image"/>
+		<param name="objects_path" value="$(find tutorial_pkg)/image_rec" type="str"/>
+    </node>
+
     <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
 
     <node pkg="tutorial_pkg" type="action_controller_node" name="action_controller" output="screen"/>

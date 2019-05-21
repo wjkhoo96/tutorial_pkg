@@ -1,0 +1,20 @@
+<launch>
+    <!-- Republish compressed image as raw image -->
+    <node name="compressed_to_raw" type="republish" pkg="image_transport" args="compressed compressed in:=raspicam_node/image raw out:=/raspicam_node/image" required="true" output="screen"/>
+    
+    <!-- Object Recognition -->
+    <node name="find_object_2d" pkg="find_object_2d" type="find_object_2d" output="screen">
+		<remap from="image" to="raspicam_node/image"/>
+		<param name="objects_path" value="$(find tutorial_pkg)/image_rec" type="str"/>
+    </node>
+    <!-- Follower -->
+    <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
+    <node pkg="tutorial_pkg" type="action_controller_node" name="action_controller" output="screen"/>
+
+    <!--RViz-->
+    <include file="$(find turtlebot3_navigation)/launch/turtlebot3_navigation.launch">
+        <arg name="map_file" value="$(find tutorial_pkg)/maps/map2.yaml"/>
+    </include>
+    <!-- Navigate -->
+    <node pkg="tutorial_pkg" name="movebase_client_py" type="goal.py" output="screen"/>
+</launch>

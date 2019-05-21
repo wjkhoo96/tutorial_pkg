@@ -1,0 +1,8 @@
+<launch>
+    <!-- Rviz-->
+    <include file="$(find turtlebot3_navigation)/launch/turtlebot3_navigation.launch">
+        <arg name="map_file" value="$(find tutorial_pkg)/maps/map2.yaml"/>
+    </include>
+    <!-- Navigate -->
+    <node pkg="tutorial_pkg" name="movebase_client_py" type="goal.py" output="screen"/>
+</launch>
